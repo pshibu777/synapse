@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "4fe65680-9629-4587-bf34-a23908d6f3d9"
+				"spark.autotune.trackingId": "6e1e6132-560d-46a5-95fb-e08f079aeb98"
 			}
 		},
 		"metadata": {
@@ -62,7 +62,7 @@
 					")\r\n",
 					"df.write.mode(\"overwrite\").saveAsTable(\"default.YourTableName\")"
 				],
-				"execution_count": 4
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -81,7 +81,7 @@
 				"source": [
 					"display(df)"
 				],
-				"execution_count": 6
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -99,7 +99,7 @@
 				"source": [
 					"df.show()"
 				],
-				"execution_count": 8
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -117,7 +117,7 @@
 				"source": [
 					"df.columns"
 				],
-				"execution_count": 9
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
@@ -135,7 +135,7 @@
 				"source": [
 					"df.printSchema()"
 				],
-				"execution_count": 13
+				"execution_count": null
 			}
 		]
 	}
