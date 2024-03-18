@@ -30,7 +30,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('workspaceName'), '/sparkpoolshibu')]",
+			"name": "[concat(parameters('workspaceName'), '/Sparkzshibu')]",
 			"type": "Microsoft.Synapse/workspaces/bigDataPools",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
@@ -470,20 +470,20 @@
 				"nbformat": 4,
 				"nbformat_minor": 2,
 				"bigDataPool": {
-					"referenceName": "sparkpoolshibu",
+					"referenceName": "Sparkzshibu",
 					"type": "BigDataPoolReference"
 				},
 				"sessionProperties": {
-					"driverMemory": "28g",
-					"driverCores": 4,
-					"executorMemory": "28g",
-					"executorCores": 4,
+					"driverMemory": "112g",
+					"driverCores": 16,
+					"executorMemory": "112g",
+					"executorCores": 16,
 					"numExecutors": 2,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "62f2201c-d8f5-455d-8551-b6727fe12bf4"
+						"spark.autotune.trackingId": "c50d6f86-de2d-492e-90d4-166901434ca6"
 					}
 				},
 				"metadata": {
@@ -497,18 +497,18 @@
 						"name": "python"
 					},
 					"a365ComputeOptions": {
-						"id": "/subscriptions/d502cf54-ca75-4d3c-a220-23e83ccd1fda/resourceGroups/resourcegroupshibu/providers/Microsoft.Synapse/workspaces/synapseshibu/bigDataPools/sparkpoolshibu",
-						"name": "sparkpoolshibu",
+						"id": "/subscriptions/d502cf54-ca75-4d3c-a220-23e83ccd1fda/resourceGroups/resourcegroupshibu/providers/Microsoft.Synapse/workspaces/synapseshibu/bigDataPools/Sparkzshibu",
+						"name": "Sparkzshibu",
 						"type": "Spark",
-						"endpoint": "https://synapseshibu.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkpoolshibu",
+						"endpoint": "https://synapseshibu.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkzshibu",
 						"auth": {
 							"type": "AAD",
 							"authResource": "https://dev.azuresynapse.net"
 						},
 						"sparkVersion": "3.3",
 						"nodeCount": 10,
-						"cores": 4,
-						"memory": 28,
+						"cores": 16,
+						"memory": 112,
 						"automaticScaleJobs": false
 					},
 					"sessionKeepAliveTimeout": 30
@@ -529,7 +529,7 @@
 							"df.write.mode(\"overwrite\").saveAsTable(\"default.YourTableName\")"
 						],
 						"outputs": [],
-						"execution_count": 4
+						"execution_count": 1
 					},
 					{
 						"cell_type": "code",
@@ -549,7 +549,7 @@
 							"display(df)"
 						],
 						"outputs": [],
-						"execution_count": null
+						"execution_count": 2
 					},
 					{
 						"cell_type": "code",
@@ -587,7 +587,7 @@
 							"df.columns"
 						],
 						"outputs": [],
-						"execution_count": null
+						"execution_count": 3
 					},
 					{
 						"cell_type": "code",
@@ -606,7 +606,85 @@
 							"df.printSchema()"
 						],
 						"outputs": [],
-						"execution_count": null
+						"execution_count": 4
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"df.count()"
+						],
+						"outputs": [],
+						"execution_count": 5
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"ridefrequency = df.select('passengerCount','tripDistance', 'day_of_week','month_num','totalAmount')"
+						],
+						"outputs": [],
+						"execution_count": 7
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"display(ridefrequency)"
+						],
+						"outputs": [],
+						"execution_count": 8
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"from pyspark.sql.functions import sum\r\n",
+							"ridefrequency.select('day_of_week', 'totalAmount').groupBy('day_of_week').agg(sum('totalAmount').alias('sumtotalamount')).show()"
+						],
+						"outputs": [],
+						"execution_count": 18
 					}
 				]
 			},
@@ -628,6 +706,31 @@
 				},
 				"nodeCount": 10,
 				"nodeSize": "Small",
+				"nodeSizeFamily": "MemoryOptimized",
+				"sparkVersion": "3.3",
+				"isComputeIsolationEnabled": false,
+				"sessionLevelPackagesEnabled": false,
+				"annotations": []
+			},
+			"dependsOn": [],
+			"location": "eastus"
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Sparkzshibu')]",
+			"type": "Microsoft.Synapse/workspaces/bigDataPools",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"autoPause": {
+					"enabled": true,
+					"delayInMinutes": 15
+				},
+				"autoScale": {
+					"enabled": true,
+					"maxNodeCount": 10,
+					"minNodeCount": 3
+				},
+				"nodeCount": 10,
+				"nodeSize": "Large",
 				"nodeSizeFamily": "MemoryOptimized",
 				"sparkVersion": "3.3",
 				"isComputeIsolationEnabled": false,
