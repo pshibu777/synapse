@@ -1,0 +1,215 @@
+{
+	"name": "sourcetotarget",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "passengerCount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "passengerCount",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "tripDistance",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "tripDistance",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "hour_of_day",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "hour_of_day",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "day_of_week",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "day_of_week",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "month_num",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "month_num",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "normalizeHolidayName",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "normalizeHolidayName",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "isPaidTimeOff",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "isPaidTimeOff",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "snowDepth",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "snowDepth",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "precipTime",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "precipTime",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "precipDepth",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "precipDepth",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "temperature",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "temperature",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "totalAmount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "totalAmount",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ubersourcefile",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "targetcopy",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-03-18T14:16:48Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}
