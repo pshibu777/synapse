@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "6e1e6132-560d-46a5-95fb-e08f079aeb98"
+				"spark.autotune.trackingId": "764fc3cb-2b40-4e7a-abdc-90c0c2a3c252"
 			}
 		},
 		"metadata": {
@@ -62,7 +62,7 @@
 					")\r\n",
 					"df.write.mode(\"overwrite\").saveAsTable(\"default.YourTableName\")"
 				],
-				"execution_count": 3
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
